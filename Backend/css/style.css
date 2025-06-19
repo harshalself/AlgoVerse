@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.drawing-area {
+  display: flex;
+  position: absolute;
+  top: 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: #1d1d1d; /* Dark gray color for blackboard */
+  background-image: url("https://example.com/blackboard-texture.png"); /* Optional: Add a texture image for a realistic effect */
+  background-size: cover; /* Ensures the texture covers the whole area */
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  border: 2px solid #222; /* Optional: Adds a border to simulate a blackboard frame */
+}
+
+.drawing-area .click-instruction {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f1f1f1; /* Light color to mimic chalk */
+  font-family: "Courier New", Courier, monospace; /* Font style for a chalk-like effect */
+  font-size: 1.5em; /* Adjust as needed */
+  pointer-events: none;
+  z-index: -10;
+}
+
+.block {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgb(163, 211, 208);
+  border-radius: 50%;
+  margin-top: -3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+.outline-btn {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  padding: 6px 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.outline-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.outline-btn:active {
+  box-shadow: none;
+}
+.outline-btn:disabled {
+  box-shadow: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.reset-btn {
+  margin-left: 12px;
+}
+.line {
+  height: 5px;
+  background-color: lemonchiffon;
+  position: absolute;
+  transform-origin: top left;
+  text-align: center;
+  color: #eee;
+  line-height: 2rem;
+}
+.line .edge-weight {
+  padding: 0 10px;
+  width: max-content;
+  margin: auto;
+}
+header {
+  position: relative; /* Make sure the header is positioned relative to apply the pseudo-element correctly */
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  filter: none; /* Remove blur from the header itself */
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 107, 107, 0.5),
+    rgba(255, 142, 83, 0.5),
+    rgba(255, 202, 40, 0.5),
+    rgba(102, 187, 106, 0.5),
+    rgba(66, 165, 245, 0.5),
+    rgba(171, 71, 188, 0.5)
+  );
+  background-size: 600%;
+  animation: gradient 100s ease infinite;
+  filter: blur(5px); /* Apply blur to the background */
+  z-index: -1; /* Ensure the pseudo-element is behind the header content */
+}
+
+header .title {
+  font-size: 2rem;
+  color: #fff;
+}
+
+header .title a:nth-child(2) {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 10px;
+}
+
+header .title a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a > img {
+  width: 100%;
+  height: 100%;
+}
+
+main h3 {
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+main ul > li {
+  padding: 0.5rem;
+}
+
+.options {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  /*backdrop-filter: blur(10px); /* Apply blur to the options background */
+  /*background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Adjust the background color for the frosted glass effect */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.options input {
+  outline: 0;
+  padding: 6px;
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+.path {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: min-content;
+  color: #fff;
+  overflow-x: scroll;
+  width: 40%;
+  min-width: 300px;
+  background-color: rgba(146, 146, 146, 0.4);
+  transition-duration: 1s;
+}
+
+.path::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.title-link {
+  font-family: "Optima", sans-serif; /* Change this to any font you like */
+  font-size: 1.25em; /* Adjust the size as needed */
+  font-weight: bold; /* Makes the text bold */
+  text-transform: uppercase; /* Makes the text uppercase */
+  text-decoration: none; /* Removes underline */
+  color: #333; /* Change text color */
+  display: block; /* Makes the link a block element, so it can act as a title */
+  text-align: center; /* Centers the text */
+  margin: px 0; /* Adds space around the title */
+}
