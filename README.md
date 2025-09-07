@@ -1,5 +1,9 @@
 # AlgoVerse
 
+## 🌐 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-blue?style=for-the-badge&logo=github)](https://harshalself.github.io/AlgoVerse/)
+
 ## Description
 
 AlgoVerse is a modern, responsive web platform that combines an elegant homepage with an interactive Dijkstra's algorithm visualizer. The platform features a clean, professional design with smooth animations and provides an intuitive interface for creating graphs and solving pathfinding problems using Dijkstra's algorithm. Perfect for students, educators, and developers learning about graph algorithms and pathfinding.
