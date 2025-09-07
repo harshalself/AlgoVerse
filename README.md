@@ -10,35 +10,38 @@ AlgoVerse is a modern, responsive web platform that combines an elegant homepage
 
 ## Screenshots
 
-**Home Page**
+### Home Page
+
 ![Home Page](./Screenshot%201.png)
 
-**Dijkstra Solver**
+### Dijkstra Solver
+
 ![Dijkstra Solver](./Screenshot%202.png)
 
 ## Tech Stack
 
 - **HTML5** - Semantic markup and structure
 - **CSS3** - Modern styling with CSS variables, Grid, Flexbox, and animations
-- **JavaScript** - Interactive functionality and algorithm implementation
-- **Bootstrap 4** - Grid system for responsive layout
+- **JavaScript (ES6+)** - Interactive functionality and algorithm implementation
+- **Toast Notifications** - Custom toast system for user feedback
 - **Google Fonts** - Inter and Space Grotesk typography
+- **GitHub Pages** - Hosting and deployment
 
 ## Project Structure
 
 ```
 ├── index.html              # Main landing page with hero, about, team, and footer sections
 ├── dijkstra-solver.html    # Interactive Dijkstra algorithm visualizer
+├── .gitignore             # Git ignore rules for design files and dependencies
 ├── css/
 │   ├── style.css           # Main stylesheet with CSS variables
 │   ├── responsive.css      # Mobile and tablet responsive styles
-│   └── bootstrap.css       # Bootstrap framework (CSS only)
+│   └── dijkstra-style.css  # Dijkstra solver specific styles
 ├── images/                 # Logo and UI images
 ├── js/
-│   ├── jquery-3.4.1.min.js # jQuery library
-│   └── script.js           # Dijkstra solver JavaScript
-├── Figma/                  # Design mockups and prototypes
-└── Project Report/         # Project documentation and reports
+│   └── script.js           # Dijkstra solver JavaScript with toast notifications
+├── Figma/                  # Design mockups and prototypes (ignored)
+└── Project Report/         # Project documentation and reports (ignored)
 ```
 
 ## Features
