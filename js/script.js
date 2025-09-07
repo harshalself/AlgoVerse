@@ -104,10 +104,9 @@ const appendBlock = (x, y) => {
 blocks.addEventListener("click", (e) => {
   if (addEdge) return;
   if (cnt > 20) {
-    alert("cannot add more than 20 vertices");
+    showToast("Cannot add more than 20 vertices", "warning");
     return;
   }
-  console.log(e.x, e.y);
   appendBlock(e.x, e.y);
 });
 
