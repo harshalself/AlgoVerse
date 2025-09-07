@@ -4,13 +4,45 @@ let cnt = 0;
 let dist;
 let lines = []; // Array to store lines
 
-let alerted = localStorage.getItem("alerted") || "";
-if (alerted !== "yes") {
-  alert(
-    "Read instructions before proceeding by clicking i-icon in the top-right corner"
-  );
-  localStorage.setItem("alerted", "yes");
-}
+// Toast notification system
+const showToast = (message, type = "info") => {
+  // Remove existing toasts
+  const existingToasts = document.querySelectorAll(".toast-notification");
+  existingToasts.forEach((toast) => toast.remove());
+
+  // Create toast container if it doesn't exist
+  let toastContainer = document.querySelector(".toast-container");
+  if (!toastContainer) {
+    toastContainer = document.createElement("div");
+    toastContainer.className = "toast-container";
+    document.body.appendChild(toastContainer);
+  }
+
+  // Create toast element
+  const toast = document.createElement("div");
+  toast.className = `toast-notification toast-${type}`;
+  toast.innerHTML = `
+    <div class="toast-content">
+      <span class="toast-message">${message}</span>
+      <button class="toast-close" onclick="this.parentElement.parentElement.remove()">×</button>
+    </div>
+  `;
+
+  // Add to container
+  toastContainer.appendChild(toast);
+
+  // Auto remove after 4 seconds
+  setTimeout(() => {
+    if (toast.parentElement) {
+      toast.style.animation = "toastSlideOut 0.3s ease-out forwards";
+      setTimeout(() => {
+        if (toast.parentElement) {
+          toast.remove();
+        }
+      }, 300);
+    }
+  }, 4000);
+};
 
 // It is called when user starts adding edges by clicking on button given
 const addEdges = () => {
@@ -170,7 +202,7 @@ const findShortestPath = () => {
     destinationNode >= cnt ||
     destinationNode < 0
   ) {
-    alert("Invalid source or destination node");
+    showToast("Invalid source or destination node", "error");
     return;
   }
 
@@ -209,14 +241,14 @@ const findShortestPath = () => {
 
   // Display the shortest path
   if (minCost[destinationNode] === Infinity) {
-    alert("No path found");
+    showToast("No path found", "error");
   } else {
     let path = [];
     for (let i = destinationNode; i !== sourceNode; i = parent[i]) {
       path.unshift(i);
     }
     path.unshift(sourceNode);
-    alert("Shortest path: " + path.join(" -> "));
+    showToast("Shortest path: " + path.join(" → "), "success");
   }
 };
 
@@ -322,7 +354,7 @@ const undo = () => {
 // Function to undo the last edge
 const undoEdge = () => {
   if (lines.length === 0) {
-    alert("No edges to undo");
+    showToast("No edges to undo", "warning");
     return;
   }
 
@@ -354,7 +386,7 @@ const deleteNode = () => {
 
   // Check if the node to delete is valid
   if (isNaN(deleteNodeId) || deleteNodeId >= cnt || deleteNodeId < 0) {
-    alert("Invalid node to delete");
+    showToast("Invalid node to delete", "error");
     return;
   }
 
