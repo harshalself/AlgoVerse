@@ -4,6 +4,34 @@ let cnt = 0;
 let dist;
 let lines = []; // Array to store lines
 
+// Mobile menu toggle function
+const toggleMobileMenu = () => {
+  const optionsMenu = document.getElementById("options-menu");
+  const menuToggle = document.getElementById("menu-toggle");
+
+  if (optionsMenu && menuToggle) {
+    optionsMenu.classList.toggle("show");
+    menuToggle.classList.toggle("active");
+  }
+};
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", (e) => {
+  const optionsMenu = document.getElementById("options-menu");
+  const menuToggle = document.getElementById("menu-toggle");
+
+  if (
+    optionsMenu &&
+    menuToggle &&
+    !optionsMenu.contains(e.target) &&
+    !menuToggle.contains(e.target) &&
+    window.innerWidth <= 768
+  ) {
+    optionsMenu.classList.remove("show");
+    menuToggle.classList.remove("active");
+  }
+});
+
 // Toast notification system
 const showToast = (message, type = "info") => {
   // Remove existing toasts

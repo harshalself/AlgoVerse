@@ -33,52 +33,13 @@ body {
   padding: 0 20px;
 }
 
-/* ===== TYPOGRAPHY ===== */
-.heading {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.heading h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  font-size: 2.5rem;
-  color: var(--text-dark);
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.heading h2::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  border-radius: 2px;
-}
-
-.heading p {
-  color: var(--text-medium);
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ===== HERO SECTION ===== */
+/* ===== HERO AREA ===== */
 .hero-area {
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   background: #040b1b;
   display: flex;
   flex-direction: column;
-  position: relative;
   overflow: hidden;
 }
 
@@ -95,13 +56,21 @@ body {
     rgba(255, 255, 255, 0.05) 100%
   );
   clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 0;
 }
 
 /* ===== NAVIGATION ===== */
 .header {
-  position: relative;
-  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
   padding: 20px 0;
+  background: rgba(4, 11, 27, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(78, 238, 142, 0.2);
+  transition: all 0.3s ease;
 }
 
 .navbar {
@@ -144,14 +113,16 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero-section {
+  position: relative;
+  z-index: 10;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 1;
   padding: 20px 0;
   min-height: calc(100vh - 100px);
+  padding-top: 140px; /* Increased buffer for fixed header */
+  margin-top: 0;
 }
 
 .hero-content {
@@ -161,6 +132,8 @@ body {
   align-items: center;
   width: 100%;
   max-width: 1200px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-text h1 {
@@ -170,6 +143,8 @@ body {
   font-size: 3.5rem;
   line-height: 1.2;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-text h1 span {
@@ -265,6 +240,8 @@ body {
 
 .hero-image {
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-image img {

@@ -150,6 +150,10 @@ header {
   background: rgba(4, 11, 27, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(78, 238, 142, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
 }
 
 header .title {
@@ -266,13 +270,28 @@ header .title .navbar-brand img {
   border-radius: 0 5px 5px 0;
 }
 
-/* ===== TOAST NOTIFICATIONS ===== */
-.toast-container {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  z-index: 10000;
-  pointer-events: none;
+/* ===== MOBILE MENU TOGGLE ===== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--secondary-color);
+  color: var(--text-light);
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 15px;
+}
+
+.menu-toggle:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.menu-toggle.active {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .toast-notification {
@@ -387,18 +406,16 @@ header .title .navbar-brand img {
     opacity: 0;
   }
 }
-@media (max-width: 1200px) {
-  header .title .navbar-brand img {
-    width: 130px;
-    height: 35px;
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
   }
 
   .options {
-    gap: 12px;
-  }
-
-  .path {
-    width: 320px;
+    display: flex !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
@@ -406,18 +423,6 @@ header .title .navbar-brand img {
   header {
     padding: 0px 15px;
     margin: 0;
-  }
-
-  .options {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-    margin: 0;
-  }
-
-  .options > div {
-    justify-content: center;
-    flex-wrap: wrap;
   }
 
   .path {
@@ -432,8 +437,11 @@ header .title .navbar-brand img {
 
 @media (max-width: 768px) {
   header {
-    padding: 0px 15px;
+    padding: 10px 15px;
     margin: 0;
+    flex-direction: column;
+    min-height: 80px;
+    position: relative;
   }
 
   header .title {
@@ -441,33 +449,69 @@ header .title .navbar-brand img {
     margin: 0;
     padding: 0;
     line-height: 1;
+    order: 1;
+    width: 100%;
+    text-align: center;
   }
 
   header .title .navbar-brand img {
-    width: 120px;
-    height: 30px;
+    width: 140px;
+    height: 35px;
     margin: 0;
     padding: 0;
   }
 
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    order: 2;
+    z-index: 1001;
+  }
+
   .options {
-    padding: 12px;
-    margin: 0;
+    order: 3;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(78, 238, 142, 0.1);
+  }
+
+  .options.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
   }
 
   .options > div {
     gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
   }
 
   .options input {
-    width: 100px;
-    padding: 6px 10px;
+    width: 90px;
+    padding: 6px 8px;
     font-size: 0.8rem;
   }
 
   .outline-btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    min-height: 36px;
   }
 
   .block {
@@ -479,29 +523,66 @@ header .title .navbar-brand img {
   .drawing-area .click-instruction {
     font-size: 1rem;
   }
+
+  .drawing-area {
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
 }
 
 @media (max-width: 576px) {
+  header {
+    padding: 8px 12px;
+    min-height: 70px;
+  }
+
   header .title .navbar-brand img {
-    width: 100px;
-    height: 25px;
+    width: 120px;
+    height: 30px;
+  }
+
+  .menu-toggle {
+    top: 8px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 1rem;
   }
 
   .options {
-    gap: 10px;
+    padding: 12px;
+    margin: 8px 0 0 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .options.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
   }
 
   .options > div {
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
+    margin-bottom: 8px;
   }
 
   .options input {
-    width: 140px;
+    width: 100%;
+    max-width: 140px;
+    padding: 6px 8px;
+    font-size: 0.8rem;
   }
 
   .outline-btn {
-    width: 140px;
+    width: 100%;
+    max-width: 140px;
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 
   .reset-btn {
@@ -518,12 +599,95 @@ header .title .navbar-brand img {
     height: 35px;
     font-size: 0.8rem;
   }
+
+  .drawing-area {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  header {
+    padding: 6px 10px;
+    min-height: 65px;
+  }
+
+  header .title .navbar-brand img {
+    width: 100px;
+    height: 25px;
+  }
+
+  .menu-toggle {
+    top: 6px;
+    right: 10px;
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
+
+  .options {
+    padding: 10px;
+    margin: 6px 0 0 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .options.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .options > div {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+
+  .options input {
+    width: 100%;
+    max-width: 120px;
+    padding: 5px 7px;
+    font-size: 0.75rem;
+  }
+
+  .outline-btn {
+    width: 100%;
+    max-width: 120px;
+    min-height: 32px;
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  .path {
+    margin: 10px;
+    font-size: 0.75rem;
+    max-height: 150px;
+  }
+
+  .block {
+    width: 30px;
+    height: 30px;
+    font-size: 0.7rem;
+  }
+
+  .drawing-area {
+    top: 65px;
+    height: calc(100vh - 65px);
+  }
+
+  .drawing-area .click-instruction {
+    font-size: 0.9rem;
+  }
 }
 
 /* ===== TOAST RESPONSIVE ===== */
 @media (max-width: 768px) {
   .toast-container {
-    top: 70px;
+    top: 90px;
     right: 15px;
     left: 15px;
     width: auto;

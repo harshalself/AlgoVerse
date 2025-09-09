@@ -13,12 +13,8 @@
 
 /* Medium screens */
 @media (max-width: 992px) {
-  .hero-area {
-    height: 100vh;
-  }
-
   .hero-section {
-    padding: 20px 0;
+    padding-top: 130px; /* Increased buffer for taller header */
     min-height: calc(100vh - 120px);
   }
 
@@ -59,19 +55,49 @@
   }
 
   .nav-links {
-    gap: 20px;
+    gap: 12px;
   }
 
   .nav-links a {
     font-size: 0.9rem;
-    padding: 8px 12px;
+    padding: 6px 10px;
   }
 }
 
 /* Small screens */
 @media (max-width: 768px) {
-  .heading h2 {
-    font-size: 2.2rem;
+  /* Header improvements */
+  .header {
+    padding: 6px 0;
+  }
+
+  .navbar {
+    padding: 8px 12px;
+    height: auto;
+    min-height: 60px;
+  }
+
+  .navbar-brand img {
+    width: 120px;
+    height: auto;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hero section improvements */
+  .hero-section {
+    padding-top: 120px; /* Increased buffer for taller header */
+    min-height: calc(100vh - 80px);
   }
 
   .hero-area::before {
@@ -95,12 +121,16 @@
 
   .btn {
     width: 200px;
+    min-height: 48px;
+    font-size: 1rem;
+    padding: 14px 24px;
   }
 
   .hero-image img {
     max-width: 100%;
   }
 
+  /* About section */
   .about-content {
     width: 100%;
     padding: 0 20px;
@@ -110,6 +140,7 @@
     font-size: 1rem;
   }
 
+  /* Team section */
   .team-section {
     padding: 60px 0;
   }
@@ -130,29 +161,32 @@
 
   .team-member {
     padding: 30px 20px;
+    min-height: 200px;
   }
 
   .member-name {
     font-size: 1.3rem;
   }
 
+  /* Footer */
   .footer p {
     font-size: 0.9rem;
     padding: 20px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-links a {
-    font-size: 0.9rem;
   }
 }
 
 /* Extra small screens */
 @media (max-width: 576px) {
+  .header {
+    padding: 6px 0;
+    min-height: 85px; /* Ensure header contains navbar in column layout */
+  }
+
+  .hero-section {
+    padding-top: 110px; /* Increased buffer for taller header */
+    min-height: calc(100vh - 85px);
+  }
+
   .heading {
     align-items: center;
     text-align: center;
@@ -174,6 +208,7 @@
     width: 180px;
     padding: 12px 25px;
     font-size: 0.9rem;
+    min-height: 44px;
   }
 
   .team-member {
@@ -189,25 +224,73 @@
   .navbar {
     flex-direction: column;
     height: auto;
-    gap: 15px;
+    gap: 10px;
+    padding: 12px;
+    min-height: 70px;
+  }
+
+  .navbar-brand img {
+    width: 100px;
   }
 
   .nav-links {
     flex-direction: row;
-    gap: 15px;
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    min-height: 44px;
   }
 }
 
 /* Very small screens */
 @media (max-width: 480px) {
+  .header {
+    padding: 8px 0;
+    min-height: 80px; /* Ensure header contains navbar in column layout */
+  }
+
   .navbar {
-    height: 70px;
+    height: auto;
+    padding: 8px 12px;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 60px;
   }
 
   .navbar-brand img {
-    width: 140px;
+    width: 90px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    padding: 5px 6px;
+    min-height: 40px;
+  }
+
+  .hero-section {
+    padding-top: 120px; /* Increased buffer for taller header */
+    min-height: calc(100vh - 80px);
   }
 
   .hero-text h1 {
@@ -217,6 +300,7 @@
   .btn {
     width: 160px;
     padding: 10px 20px;
+    min-height: 44px;
   }
 
   .team-section .heading h2 {
@@ -225,6 +309,14 @@
 
   .footer p {
     font-size: 0.85rem;
+  }
+
+  .about-content {
+    padding: 0 15px;
+  }
+
+  .team-grid {
+    padding: 0 10px;
   }
 }
 

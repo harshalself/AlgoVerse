@@ -21,7 +21,11 @@
             style="width: 160px; height: auto" />
         </a>
       </div>
-      <div class="options">
+      <button class="menu-toggle" id="menu-toggle" onclick="toggleMobileMenu()">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">Menu</span>
+      </button>
+      <div class="options" id="options-menu">
         <div>
           <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">
             Add edges
